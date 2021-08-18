@@ -62,14 +62,6 @@ body{
     font-weight: bolder;
 }
 
-footer{
-    padding: 3px;
-    border-radius: 6px;
-    background-color: #075E54;
-    bottom: 0;
-    width: fit-content;
-    position: fixed;
-}
 .info{
     font-weight: bolder;
 }
