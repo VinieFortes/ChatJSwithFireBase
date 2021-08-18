@@ -68,7 +68,7 @@ footer{
     background-color: #075E54;
     bottom: 0;
     width: fit-content;
-    position: absolute;
+    position: fixed;
 }
 .info{
     font-weight: bolder;
