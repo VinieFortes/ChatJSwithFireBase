@@ -21,7 +21,10 @@ async function SingUp(){
     let senha = document.getElementById("senha_singUp").value;
     let usuario = document.getElementById("user").value;
     try {
-        await firebase.auth().createUserWithEmailAndPassword(email, senha);
+        await firebase.auth().createUserWithEmailAndPassword(email, senha).then((userCredential) => {
+            new Promise(resolve => setTimeout(resolve, 3000));
+            window.location.href = 'chat.html';
+        })
     } catch (error) {
         switch (error.code) {
             case 'auth/email-already-in-use':
@@ -48,8 +51,6 @@ async function SingUp(){
             email: email
         });
     });
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    window.location.href = 'chat.html';
 }
 function Login(){
     btnLoginEmail.style.visibility = "visible";
