@@ -61,7 +61,11 @@ async function Entrar(){
     let email = document.getElementById("loginEmail_input").value;
     let senha = document.getElementById("loginPass_input").value;
     try{
-        await firebase.auth().signInWithEmailAndPassword(email, senha);
+        await firebase.auth().signInWithEmailAndPassword(email, senha).then((userCredential) => {
+            new Promise(resolve => setTimeout(resolve, 3000));
+            window.location.href = 'chat.html';
+        })
+
     }catch (erro) {
         console.log(erro.code)
         switch (erro.code) {
@@ -76,8 +80,6 @@ async function Entrar(){
                 break;
         }
     }
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    window.location.href = 'chat.html';
 }
 
 
