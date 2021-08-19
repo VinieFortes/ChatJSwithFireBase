@@ -1,0 +1,23 @@
+body{
+    background-color: #25D366;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#chat{
+    text-align: center;
+    background-color: white;
+    width: fit-content;
+    padding: 8px;
+    border: none;
+    border-radius: 12px;
+}
+#header{
+    text-align: center;
+    background-color: #075E54;
+    width: fit-content;
+    padding: 8px;
+    border: none;
+    border-radius: 12px;
+}
