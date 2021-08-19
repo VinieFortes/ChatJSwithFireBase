@@ -1,4 +1,4 @@
-var firebaseConfig = {
+/*var firebaseConfig = {
     apiKey: "AIzaSyBf_gsA_VIIxMFG6OLYwIB9f0RCDdgpjXg",
     authDomain: "fir-projectjs.firebaseapp.com",
     projectId: "fir-projectjs",
@@ -7,6 +7,16 @@ var firebaseConfig = {
     appId: "1:460409099476:web:a02f2a1709461618b99741",
     databaseURL: "https://fir-projectjs-default-rtdb.firebaseio.com/",
     measurementId: "G-KWQJ6QN6GF",
+};*/
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBvO2RRLLkFJLh6XBdeFCpSUvpv9pqg5cg",
+    authDomain: "webb-760df.firebaseapp.com",
+    projectId: "webb-760df",
+    storageBucket: "webb-760df.appspot.com",
+    messagingSenderId: "136311480133",
+    appId: "1:136311480133:web:54d964ef1a662f98dca82c",
+    measurementId: "G-2JZB4KMM4J"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -19,7 +29,8 @@ var docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
 docRef.get().then((doc) => {
     if (doc.exists) {
         userchat.innerHTML = doc.data().user
-        profile.src = doc.user.img
+        profile.src = doc.data().img
+        console.log(doc.user.img)
     } else {
         console.log("No such document!");
     }
@@ -95,4 +106,11 @@ function showMsg() {
         dados = '';
     });
     setTimeout(showMsg, 10000);
+}
+function logout(){
+    firebase.auth().signOut().then(() => {
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.log(error.code)
+    });
 }

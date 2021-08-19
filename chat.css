@@ -65,7 +65,7 @@ table{
     background-color: white;
     font-size: 14px;
     padding: 5px;
-    border-right: 6px solid red;
+    border-left: 6px solid red;
     float: right;
     font-family: monospace;
     border-radius: 12px;
@@ -93,6 +93,7 @@ table{
     font-size: 15px;
     font-weight: bolder;
     font-family: monospace;
+    margin-bottom: 5px;
 }
 #targetinfo img{
     border-radius: 50%;

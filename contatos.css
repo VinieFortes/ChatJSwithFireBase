@@ -19,14 +19,18 @@ body{
     border-radius: 12px;
     margin-top: 5px;
 }
-#td{
+table{
     background-color: white;
+    border-radius: 12px;
+}
+#td{
     color: #333333;
     padding: 5px;
     border-radius: 12px;
     font-weight: bolder;
     font-size: 18px;
     margin-top: 5px;
+    font-family: monospace;
 }
 #user_info{
     display: flex;
