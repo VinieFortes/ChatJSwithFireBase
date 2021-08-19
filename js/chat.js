@@ -49,11 +49,15 @@ function enviar() {
     writeUserData(x.value)
 }
 
+var currentdate = new Date();
+var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+
 function writeUserData(msg) {
     db.collection("mensagens").doc().set({
         mensagem: msg,
         uid_sender: userLogin,
-        uid_target: sessionStorage.getItem('uid')
+        uid_target: sessionStorage.getItem('uid'),
+        time: datetime
 
     }).then((docRef) => {
         console.log("mensagem enviada");
