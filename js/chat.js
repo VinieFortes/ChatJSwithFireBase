@@ -71,9 +71,9 @@ function showdb() {
     db.collection("mensagens").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if(doc.data().uid_sender === userLogin){
-                dados = '<table>' + '<tr><td id="td" style="color: blue">' +doc.data().mensagem+ '</td></tr>' + dados;
+                dados = '<table width="100%">' + '<tr><td id="td" style="color: blue; text-align: right;">' +doc.data().mensagem+ '</td></tr>' + dados;
             } else {
-                dados = '<table>' + '<tr><td id="td" style="color: red">' +doc.data().mensagem+ '</td></tr>' + dados;
+                dados = '<table>' + '<tr><td id="td" style="color: red;float: left">' +doc.data().mensagem+ '</td></tr>' + dados;
             }
             lista.innerHTML = dados;
 
