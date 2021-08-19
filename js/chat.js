@@ -49,15 +49,14 @@ function enviar() {
     writeUserData(x.value)
 }
 
-var currentdate = new Date();
-var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-
 function writeUserData(msg) {
-    db.collection("mensagens").doc().set({
+    +new Date
+    var smg = db.collection("mensagens");
+    smg.doc().set({
         mensagem: msg,
         uid_sender: userLogin,
         uid_target: sessionStorage.getItem('uid'),
-        time: datetime
+        time: Date.now()
 
     }).then((docRef) => {
         console.log("mensagem enviada");
@@ -71,9 +70,10 @@ let dados = '';
 const lista = document.getElementById("conversas");
 
 function showMsg() {
-    db.collection("mensagens").get().then((querySnapshot) => {
+    var mensagens = db.collection("mensagens");
+    mensagens.orderBy('time', 'desc').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid') ) {
+            if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid')){
                     dados = '<table width="100%">' + '<tr><td id="td" style="color: blue; text-align: right;">' + doc.data().mensagem + '</td></tr>' + dados;
             }if (doc.data().uid_sender !== userLogin && doc.data().uid_target !== sessionStorage.getItem('uid') )
                 dados = '<table>' + '<tr><td id="td" style="color: red;float: left">' + doc.data().mensagem + '</td></tr>' + dados;
