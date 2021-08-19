@@ -12,6 +12,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+
 const userchat = document.getElementById("userChat");
 var docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
 docRef.get().then((doc) => {
@@ -44,6 +45,12 @@ db.collection("users").get().then((querySnapshot) => {
 
 
 var x = document.getElementById("myInput");
+x.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("enviar").click();
+    }
+});
 
 function enviar() {
     writeUserData(x.value)
@@ -74,9 +81,9 @@ function showMsg() {
     mensagens.orderBy('time', 'desc').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid')){
-                    dados = '<table width="100%">' + '<tr><td id="td" style="color: blue; text-align: right;">' + doc.data().mensagem + '</td></tr>' + dados;
+                    dados = '<table>' + '<tr><td id="td_right">' + doc.data().mensagem + '</td></tr>' + dados;
             }if (doc.data().uid_sender === sessionStorage.getItem('uid') && doc.data().uid_target === userLogin) {
-                    dados = '<table>' + '<tr><td id="td" style="color: red;float: left">' + doc.data().mensagem + '</td></tr>' + dados;
+                    dados = '<table>' + '<tr><td id="td_left" style="color: red;float: left">' + doc.data().mensagem + '</td></tr>' + dados;
             }
             lista.innerHTML = dados;
 
@@ -85,5 +92,3 @@ function showMsg() {
     });
     setTimeout(showMsg, 1000);
 }
-
-
