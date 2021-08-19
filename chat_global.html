@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Contatos</title>
+    <title>Chat Gobal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="contatos.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
 <body>
 <div id="header">
@@ -13,19 +13,25 @@
         <p id="user"></p>
         <button id="logoff" onclick="logout()">Sair</button>
     </div>
-    <p>Temos um chat global tambem !</p>
-    <div style="display: flex; flex-direction: row">
-        <table style="margin: 0 auto"><tr><td><img src="src/urso.png" style="border-radius: 50%" width="32" height="32" alt="profile"></td><td onclick="chat_global()" style="color: black; font-family: monospace; font-weight: bold; color: #333333;font-size: 18px">Chat global</td></tr></table>
+    <div id="chat">
+        <div id="userTarget">
+            <div id="targetinfo">
+                <img id="profile" alt="profile" width="32" height="32">
+                <p id="userChat"></p>
+            </div>
+            <div id="conversas"></div>
+            <input type="text" placeholder="Escreva algo..." id="myInput">
+            <button id="enviar" onclick="enviar() ">ENVIAR</button>
+        </div>
+
     </div>
-    <p>Esses são os contatos disponiveis para chat individual no Chat.JS</p>
-    <div id="lista"></div>
 </div>
 
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-<script src="js/contatos.js"></script>
+<script src="js/chat_global.js"></script>
 </html>

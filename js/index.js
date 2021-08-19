@@ -105,7 +105,27 @@ async function Entrar(){
         }
     }
 }
-
+const inputSin = document.getElementsByClassName("singup");
+inputSin.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("criar").click();
+    }
+});
+const inputlin1 = document.getElementById("loginEmail_input");
+const inputlin2 = document.getElementById("loginPass_input");
+inputlin1.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("loginEntrar_input").click();
+    }
+});
+inputlin2.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("loginEntrar_input").click();
+    }
+});
 
 function toast(mensagem) {
     var x = document.getElementById("erro");

@@ -13,16 +13,16 @@
     </div>
     <div id="singUp">
         <p class="info">Ainda não tem conta ? Então Crie uma !</p>
-        <input class="singup" type="text" placeholder="Email" id="email_singUp">
-        <input class="singup" type="password" placeholder="Senha" id="senha_singUp">
-        <input class="singup" type="text" placeholder="Usuario" id="user">
-        <button onclick="SingUp()">Criar conta</button>
+        <input class="singup" type="text" placeholder="Email" id="email_singUp" required>
+        <input class="singup" type="password" placeholder="Senha" id="senha_singUp" required>
+        <input class="singup" type="text" placeholder="Usuario" id="user" required>
+        <button id="criar" onclick="SingUp()">Criar conta</button>
     </div>
     <div id="Login">
         <p class="info">Já tem uma conta ? Então Faça Login !</p>
         <button id="login_input" onclick="Login()">Login</button>
-        <input id="loginEmail_input" type="email" placeholder="Email" style="visibility: hidden">
-        <input id="loginPass_input" type="password" placeholder="Senha" style="visibility: hidden">
+        <input id="loginEmail_input" type="email" placeholder="Email" style="visibility: hidden" required>
+        <input id="loginPass_input" type="password" placeholder="Senha" style="visibility: hidden" required>
         <button id="loginEntrar_input" style="visibility: hidden" onclick="Entrar()">Entrar</button>
     </div>
     <div id="erro"></div>

@@ -45,6 +45,10 @@ db.collection("users").get().then((querySnapshot) => {
     });
 });
 
+function chat_global(){
+    window.location.href = 'chat_global.html';
+}
+
 function logout(){
     firebase.auth().signOut().then(() => {
         window.location.href = 'index.html';
