@@ -65,6 +65,19 @@ table{
     font-family: monospace;
     border-radius: 12px;
 }
+#td_left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: red;
+    background-color: white;
+    font-size: 14px;
+    padding: 5px;
+    border-right: 6px solid red;
+    float: right;
+    font-family: monospace;
+    border-radius: 12px;
+}
 #myInput{
     margin-top: 10px;
     background-color: white;
