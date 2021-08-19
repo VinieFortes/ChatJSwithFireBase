@@ -14,10 +14,12 @@ var db = firebase.firestore();
 
 
 const userchat = document.getElementById("userChat");
+const profile = document.getElementById("profile");
 var docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
 docRef.get().then((doc) => {
     if (doc.exists) {
         userchat.innerHTML = doc.data().user
+        profile.src = doc.user.img
     } else {
         console.log("No such document!");
     }
@@ -68,6 +70,7 @@ function writeUserData(msg) {
 
     }).then((docRef) => {
         console.log("mensagem enviada");
+        showMsg()
     })
         .catch((error) => {
             console.error("Error adding document: ", error);
@@ -91,5 +94,5 @@ function showMsg() {
         });
         dados = '';
     });
-    setTimeout(showMsg, 1000);
+    setTimeout(showMsg, 10000);
 }
