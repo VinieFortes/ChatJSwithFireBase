@@ -28,7 +28,7 @@ db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         if (userLogin !== doc.data().uid){
             var adicionado = doc.data().user;
-            dados = '<table>' + '<tr><td id="td" onclick="gotochat(\'' + doc.data().uid + '\')">' +adicionado+ '</td></tr>' + dados;
+            dados = '<table>' + '<tr><td><img src=\'' + doc.data().img + '\' style="border-radius: 50%" width="32" height="32" alt="profile"></td><td id="td" onclick="gotochat(\'' + doc.data().uid + '\')">' +adicionado+ '</td></tr>' + dados;
             lista.innerHTML = dados;
         } else {
             usuarioLogado.innerHTML = 'Olá ' + doc.data().user

@@ -12,6 +12,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+var imgs = ['src/cavalo.png','src/dog.png','src/dog2.png','src/gato.png','src/gato2.png','src/pinguim.png','src/passaro.png']
+
 const btnLoginEmail = document.getElementById("loginEmail_input");
 const btnLoginPass = document.getElementById("loginPass_input");
 const btnLoginEntrar = document.getElementById("loginEntrar_input");
@@ -31,7 +33,8 @@ async function SingUp(){
                 db.collection("users").doc(user.uid).set({
                     user: usuario,
                     email: email,
-                    uid: user.uid
+                    uid: user.uid,
+                    img: imgs[Math.floor(Math.random() * 6) + 1]
                 }).then((docRef) => {
                     window.location.href = 'contatos.html';
                 })
