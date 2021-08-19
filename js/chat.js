@@ -10,48 +10,78 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-showdb()
-var x = document.getElementById("myInput");
+var db = firebase.firestore();
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        var user_uid = user.uid
+const userchat = document.getElementById("userChat");
+var docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
+docRef.get().then((doc) => {
+    if (doc.exists) {
+        userchat.innerHTML = doc.data().user
+    } else {
+        console.log("No such document!");
     }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+let userLogin = '';
+const usuarioLogado = document.getElementById("user");
 
-    firebase.database().ref().child("users").child(user_uid).get().then((snapshot) => {
-        if (snapshot.exists()) {
-            var user = document.getElementById("user");
-            user.innerHTML = snapshot.val().user;
-        }
-    })
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        this.userId = user.uid
+    }
+   userLogin = user.uid;
+    showdb()
 })
 
-    function setto() {
-        writeUserData(1, x.value)
-        showdb()
-    }
+db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        if (userLogin === doc.data().uid){
+            usuarioLogado.innerHTML = 'Olá ' + doc.data().user;
+        }
+    });
+});
 
-    function writeUserData(userId, msg) {
-        firebase.database().ref('users/' + userId).set({
-            msg: msg
-        });
-    }
 
-    function showdb() {
-        const para = document.createElement("p");
-        const dbRef = firebase.database().ref();
-        dbRef.child("users").child(1).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val().msg)
-                const node = document.createTextNode(snapshot.val().msg);
-                para.appendChild(node);
-                const element = document.getElementById("div1");
-                element.appendChild(para);
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
+var x = document.getElementById("myInput");
+
+function enviar() {
+    writeUserData(x.value)
 }
+
+function writeUserData(msg) {
+    db.collection("mensagens").doc().set({
+        mensagem: msg,
+        uid_sender: userLogin,
+        uid_target: sessionStorage.getItem('uid')
+
+    }).then((docRef) => {
+        console.log("mensagem enviada");
+        showdb()
+    })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+    });
+}
+
+let dados = '';
+const lista = document.getElementById("conversas");
+
+function showdb() {
+    db.collection("mensagens").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            if(doc.data().uid_sender === userLogin){
+                dados = '<table>' + '<tr><td id="td" style="color: blue">' +doc.data().mensagem+ '</td></tr>' + dados;
+            } else {
+                dados = '<table>' + '<tr><td id="td" style="color: red">' +doc.data().mensagem+ '</td></tr>' + dados;
+            }
+            lista.innerHTML = dados;
+
+        });
+        dados = '';
+    });
+
+    setTimeout(showdb, 1000);
+}
+
 

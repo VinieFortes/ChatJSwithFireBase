@@ -13,5 +13,6 @@
     <orderEntry type="library" name="firebase-database" level="application" />
     <orderEntry type="library" name="firebase-ui-auth" level="application" />
     <orderEntry type="library" name="firebase-auth" level="application" />
+    <orderEntry type="library" name="firebase-firestore" level="application" />
   </component>
 </module>

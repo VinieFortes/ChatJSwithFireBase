@@ -5,14 +5,6 @@ body{
     flex-direction: column;
     align-items: center;
 }
-#chat{
-    text-align: center;
-    background-color: white;
-    width: fit-content;
-    padding: 8px;
-    border: none;
-    border-radius: 12px;
-}
 #header{
     text-align: center;
     background-color: #075E54;
@@ -20,6 +12,21 @@ body{
     padding: 8px;
     border: none;
     border-radius: 12px;
+}
+#lista{
+    background-color: #128C7E;
+    padding: 5px;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+#td{
+    background-color: white;
+    color: #333333;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: bolder;
+    font-size: 18px;
+    margin-top: 5px;
 }
 #user_info{
     display: flex;
@@ -32,16 +39,4 @@ body{
     height: fit-content;
     border-radius: 12px;
     border: none;
-}
-#chat{
-    background-color: white;
-
-}
-#userChat{
-    display: flex;
-    flex-direction: row;
-    background-color: #075E54;
-    border-radius: 12px;
-    padding: 5px;
-    font-weight: bolder;
 }

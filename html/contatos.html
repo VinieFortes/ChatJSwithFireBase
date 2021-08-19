@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Contatos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/contatos.css">
 </head>
 <body>
 <div id="header">
     <h1>Chat JS</h1>
-    <p> Crie sua conta e converse com atraves de um chat feito em JavaScript utlizando FireBase Database !</p>
+    <div id="user_info">
+        <p id="user"></p>
+        <button id="logoff" onclick="logout()">Sair</button>
+    </div>
+    <p>Esses são os contatos disponiveis no Chat.JS</p>
+    <div id="lista"></div>
 </div>
+
 </body>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+<script src="../js/contatos.js"></script>
 </html>

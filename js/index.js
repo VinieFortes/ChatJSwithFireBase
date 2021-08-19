@@ -10,6 +10,7 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
 
 const btnLoginEmail = document.getElementById("loginEmail_input");
 const btnLoginPass = document.getElementById("loginPass_input");
@@ -21,9 +22,25 @@ async function SingUp(){
     let senha = document.getElementById("senha_singUp").value;
     let usuario = document.getElementById("user").value;
     try {
-        await firebase.auth().createUserWithEmailAndPassword(email, senha).then((userCredential) => {
-            new Promise(resolve => setTimeout(resolve, 3000));
-            window.location.href = 'chat.html';
+        await firebase.auth().createUserWithEmailAndPassword(email, senha).then(async (userCredential) => {
+
+            await firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    this.userId = user.uid
+                }
+                db.collection("users").doc(user.uid).set({
+                    user: usuario,
+                    email: email,
+                    uid: user.uid
+                }).then((docRef) => {
+                    window.location.href = 'contatos.html';
+                })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                    });
+
+            });
+
         })
     } catch (error) {
         switch (error.code) {
@@ -44,13 +61,6 @@ async function SingUp(){
                 break;
         }
     }
-    firebase.auth().onAuthStateChanged( user => {
-        if (user) { this.userId = user.uid }
-        firebase.database().ref('users/' + user.uid).set({
-            user: usuario,
-            email: email
-        });
-    });
 }
 function Login(){
     btnLoginEmail.style.visibility = "visible";
@@ -64,7 +74,7 @@ async function Entrar(){
     try{
         await firebase.auth().signInWithEmailAndPassword(email, senha).then((userCredential) => {
             new Promise(resolve => setTimeout(resolve, 3000));
-            window.location.href = 'chat.html';
+            window.location.href = 'contatos.html';
         })
 
     }catch (erro) {

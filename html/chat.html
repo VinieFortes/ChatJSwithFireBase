@@ -6,21 +6,28 @@
     <link rel="stylesheet" href="../css/chat.css">
 </head>
 <body>
-    <div id="chat">
-        <div id="header">
-            <h1 id="user"></h1>
+<div id="header">
+    <h1>Chat JS</h1>
+    <div id="user_info">
+        <p id="user"></p>
+        <button id="logoff" onclick="logout()">Sair</button>
     </div>
-        <div id="div1">
+    <div id="chat">
+        <div id="userTarget">
+            <p id="userChat"></p>
+            <div id="conversas"></div>
+            <input type="text" placeholder="Escreva algo..." id="myInput">
+            <button onclick="enviar()">ENVIAR</button>
+        </div>
+
+    </div>
 </div>
 
-
-</div>
-<input type="text" placeholder="Type something..." id="myInput">
-<button onclick="setto()">GO</button>
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
 <script src="../js/chat.js"></script>
 </html>
