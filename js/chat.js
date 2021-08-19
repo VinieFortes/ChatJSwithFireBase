@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(user => {
         this.userId = user.uid
     }
    userLogin = user.uid;
-    showdb()
+    showMsg()
 })
 
 db.collection("users").get().then((querySnapshot) => {
@@ -57,7 +57,6 @@ function writeUserData(msg) {
 
     }).then((docRef) => {
         console.log("mensagem enviada");
-        showdb()
     })
         .catch((error) => {
             console.error("Error adding document: ", error);
@@ -67,21 +66,20 @@ function writeUserData(msg) {
 let dados = '';
 const lista = document.getElementById("conversas");
 
-function showdb() {
+function showMsg() {
     db.collection("mensagens").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            if(doc.data().uid_sender === userLogin){
-                dados = '<table width="100%">' + '<tr><td id="td" style="color: blue; text-align: right;">' +doc.data().mensagem+ '</td></tr>' + dados;
-            } else {
-                dados = '<table>' + '<tr><td id="td" style="color: red;float: left">' +doc.data().mensagem+ '</td></tr>' + dados;
-            }
+            if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid') ) {
+                    dados = '<table width="100%">' + '<tr><td id="td" style="color: blue; text-align: right;">' + doc.data().mensagem + '</td></tr>' + dados;
+            }if (doc.data().uid_sender !== userLogin && doc.data().uid_target !== sessionStorage.getItem('uid') )
+                dados = '<table>' + '<tr><td id="td" style="color: red;float: left">' + doc.data().mensagem + '</td></tr>' + dados;
+
             lista.innerHTML = dados;
 
         });
         dados = '';
     });
-
-    setTimeout(showdb, 1000);
+    setTimeout(showMsg, 1000);
 }
 
 
