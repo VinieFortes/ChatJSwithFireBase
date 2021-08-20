@@ -127,7 +127,7 @@ function showMsg() {
         });
         dados = '';
     });
-    setTimeout(showMsg, 10000);
+    setTimeout(showMsg, 5000);
 }
 
 //Função responsavel por fazer LogOut
