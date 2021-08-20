@@ -82,23 +82,25 @@ table{
     border: none;
     padding: 5px;
 }
-#targetinfo{
+#userTarget{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #075E54;
     padding: 2px;
     border-radius: 12px;
-    align-items: center;
-    font-size: 15px;
-    font-weight: bolder;
     font-family: monospace;
     margin-bottom: 5px;
 }
-#targetinfo img{
+#profile{
     border-radius: 50%;
 }
-#targetinfo p{
+#userChat{
     margin-left: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+#status{
+
 }
 footer{
     text-align: center;

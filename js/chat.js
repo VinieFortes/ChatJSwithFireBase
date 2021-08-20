@@ -22,6 +22,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+const status = document.getElementById("status");
 
 const userchat = document.getElementById("userChat");
 const profile = document.getElementById("profile");
@@ -38,6 +39,7 @@ docRef.get().then((doc) => {
     console.log("Error getting document:", error);
 });
 let userLogin = '';
+
 const usuarioLogado = document.getElementById("user");
 
 firebase.auth().onAuthStateChanged(user => {
@@ -52,6 +54,11 @@ db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         if (userLogin === doc.data().uid){
             usuarioLogado.innerHTML = 'Olá ' + doc.data().user;
+        }
+        if(doc.data().online === 1){
+            status.innerHTML = 'online';
+        }else{
+            status.innerHTML = 'offline';
         }
     });
 });

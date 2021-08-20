@@ -37,7 +37,7 @@ db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         if (userLogin !== doc.data().uid){
             var adicionado = doc.data().user;
-            dados = '<table>' + '<tr><td><img src=\'' + doc.data().img + '\' style="border-radius: 50%" width="32" height="32" alt="profile"></td><td id="td" onclick="gotochat(\'' + doc.data().uid + '\')">' +adicionado+ '</td></tr>' + dados;
+            dados = '<table>' + '<tr><td><img src=\'' + doc.data().img + '\' style="border-radius: 50%" width="32" height="32" alt="profile"></td><td id="td" onclick="gotochat(\'' + doc.data().uid + '\')">' +adicionado+ '</td>' + dados;
             lista.innerHTML = dados;
         } else {
             usuarioLogado.innerHTML = 'Olá ' + doc.data().user
@@ -48,24 +48,6 @@ db.collection("users").get().then((querySnapshot) => {
 function chat_global(){
     window.location.href = 'chat_global.html';
 }
-
-function logout(){
-    db.collection("users").doc(userLogin).update({
-        online: 0
-    }).then((docRef) => {
-        firebase.auth().signOut().then(() => {
-            window.location.href = 'index.html';
-        }).catch((error) => {
-            console.log(error.code)
-        });
-        window.location.href = 'index.html';
-    })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
-}
-
-
 
 function gotochat(uid) {
     sessionStorage.setItem('uid', uid);
