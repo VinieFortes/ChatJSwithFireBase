@@ -1,4 +1,4 @@
-/*var firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyBf_gsA_VIIxMFG6OLYwIB9f0RCDdgpjXg",
     authDomain: "fir-projectjs.firebaseapp.com",
     projectId: "fir-projectjs",
@@ -7,9 +7,9 @@
     appId: "1:460409099476:web:a02f2a1709461618b99741",
     databaseURL: "https://fir-projectjs-default-rtdb.firebaseio.com/",
     measurementId: "G-KWQJ6QN6GF",
-};*/
+};
 
-const firebaseConfig = {
+/*const firebaseConfig = {
     apiKey: "AIzaSyBvO2RRLLkFJLh6XBdeFCpSUvpv9pqg5cg",
     authDomain: "webb-760df.firebaseapp.com",
     projectId: "webb-760df",
@@ -17,7 +17,7 @@ const firebaseConfig = {
     messagingSenderId: "136311480133",
     appId: "1:136311480133:web:54d964ef1a662f98dca82c",
     measurementId: "G-2JZB4KMM4J"
-};
+};*/
 
 //Incialização do firebase
 firebase.initializeApp(firebaseConfig);
@@ -118,9 +118,9 @@ function showMsg() {
     mensagens.orderBy('time', 'desc').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid')){
-                    dados = '<table>' + '<tr><td id="td_right">' + doc.data().mensagem + '</td></tr>' + dados;
+                    dados = '<table>' + '<tr><td><p id="td_right">' + doc.data().mensagem + '</p></td></tr>' + dados;
             }if (doc.data().uid_sender === sessionStorage.getItem('uid') && doc.data().uid_target === userLogin) {
-                    dados = '<table>' + '<tr><td id="td_left" style="color: red;float: left">' + doc.data().mensagem + '</td></tr>' + dados;
+                    dados = '<table>' + '<tr><td><p id="td_left" style="color: red;float: left">' + doc.data().mensagem + '</p></td></tr>' + dados;
             }
             lista.innerHTML = dados;
 

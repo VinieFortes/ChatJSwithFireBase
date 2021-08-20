@@ -1,6 +1,7 @@
 body{
     background-color: #25D366;
     color: white;
+    width: auto;
     display: table;
     margin: 10px auto 0;
 }
@@ -15,7 +16,7 @@ body{
 #header{
     text-align: center;
     background-color: #075E54;
-    width: fit-content;
+    width: auto;
     padding: 8px;
     border: none;
     border-radius: 12px;
@@ -55,6 +56,8 @@ table{
     float: right;
     font-family: monospace;
     border-radius: 12px;
+    white-space: pre-wrap;
+    word-wrap:break-word;
 }
 #td_left{
     display: flex;
@@ -68,6 +71,7 @@ table{
     float: right;
     font-family: monospace;
     border-radius: 12px;
+    white-space: pre-wrap;
 }
 #myInput{
     margin-top: 10px;
