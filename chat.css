@@ -7,7 +7,7 @@ body{
 #chat{
     text-align: center;
     background-color: white;
-    width: fit-content;
+    width: auto;
     padding: 8px;
     border: none;
     border-radius: 12px;
