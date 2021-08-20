@@ -7,7 +7,7 @@ body{
 #header{
     text-align: center;
     background-color: #075E54;
-    width: 500px;
+    width: auto;
     padding: 8px;
     border: none;
     border-radius: 12px;
