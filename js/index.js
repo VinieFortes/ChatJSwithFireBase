@@ -9,7 +9,7 @@
     measurementId: "G-KWQJ6QN6GF",
 };*/
 
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBvO2RRLLkFJLh6XBdeFCpSUvpv9pqg5cg",
     authDomain: "webb-760df.firebaseapp.com",
     projectId: "webb-760df",
@@ -19,9 +19,20 @@ var firebaseConfig = {
     measurementId: "G-2JZB4KMM4J"
 };
 
+//Incialização do firebase
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+const db = firebase.firestore();
 
+//Elementos
+var imgs = ['src/cavalo.png','src/dog.png','src/dog2.png','src/gato.png','src/gato2.png','src/pinguim.png','src/passaro.png']
+const btnLoginEmail = document.getElementById("loginEmail_input");
+const btnLoginPass = document.getElementById("loginPass_input");
+const btnLoginEntrar = document.getElementById("loginEntrar_input");
+const btnLogin = document.getElementById("login_input");
+const inputlin1 = document.getElementById("loginEmail_input");
+const inputlin2 = document.getElementById("loginPass_input");
+
+//Responsavel por atualizar o status online do usuario Sender
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         db.collection("users").doc(user.uid).update({
@@ -35,13 +46,7 @@ firebase.auth().onAuthStateChanged(user => {
     }
 })
 
-var imgs = ['src/cavalo.png','src/dog.png','src/dog2.png','src/gato.png','src/gato2.png','src/pinguim.png','src/passaro.png']
-
-const btnLoginEmail = document.getElementById("loginEmail_input");
-const btnLoginPass = document.getElementById("loginPass_input");
-const btnLoginEntrar = document.getElementById("loginEntrar_input");
-const btnLogin = document.getElementById("login_input");
-
+// Função para cadastro
 async function SingUp(){
     let email = document.getElementById("email_singUp").value;
     let senha = document.getElementById("senha_singUp").value;
@@ -89,12 +94,16 @@ async function SingUp(){
         }
     }
 }
+
+//Função revelar a tela do Login
 function Login(){
     btnLoginEmail.style.visibility = "visible";
     btnLoginPass.style.visibility = "visible";
     btnLoginEntrar.style.visibility = "visible";
     btnLogin.style.visibility = "hidden";
 }
+
+//Função responsavel para Entrar na conta
 async function Entrar(){
     let email = document.getElementById("loginEmail_input").value;
     let senha = document.getElementById("loginPass_input").value;
@@ -127,14 +136,6 @@ async function Entrar(){
     }
 }
 
-const inputlin1 = document.getElementById("loginEmail_input");
-const inputlin2 = document.getElementById("loginPass_input");
-inputlin1.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("loginEntrar_input").click();
-    }
-});
 inputlin2.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();

@@ -8,7 +8,8 @@
     databaseURL: "https://fir-projectjs-default-rtdb.firebaseio.com/",
     measurementId: "G-KWQJ6QN6GF",
 };*/
-var firebaseConfig = {
+
+const firebaseConfig = {
     apiKey: "AIzaSyBvO2RRLLkFJLh6XBdeFCpSUvpv9pqg5cg",
     authDomain: "webb-760df.firebaseapp.com",
     projectId: "webb-760df",
@@ -18,14 +19,17 @@ var firebaseConfig = {
     measurementId: "G-2JZB4KMM4J"
 };
 
+//Incialização do firebase
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+const db = firebase.firestore();
 
+//Elementos
 const usuarioLogado = document.getElementById("user");
 const lista = document.getElementById("lista");
-var dados = '';
-var userLogin = '';
+let dados = '';
+let userLogin = '';
 
+//Verifica se o usuario Sender está logado
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         this.userId = user.uid
@@ -33,6 +37,7 @@ firebase.auth().onAuthStateChanged(user => {
      userLogin = user.uid;
 })
 
+//Ler o BD e lista todos os usuarios cadastrados
 db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         if (userLogin !== doc.data().uid){
@@ -45,13 +50,14 @@ db.collection("users").get().then((querySnapshot) => {
     });
 });
 
+// Função leva para chat global
 function chat_global(){
     window.location.href = 'chat_global.html';
 }
 
+// Função leva para chat individual passando o uid do user Target
 function gotochat(uid) {
     sessionStorage.setItem('uid', uid);
     window.location.href = 'chat.html';
-
 }
 

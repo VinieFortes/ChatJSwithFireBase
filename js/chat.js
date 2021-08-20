@@ -9,7 +9,7 @@
     measurementId: "G-KWQJ6QN6GF",
 };*/
 
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBvO2RRLLkFJLh6XBdeFCpSUvpv9pqg5cg",
     authDomain: "webb-760df.firebaseapp.com",
     projectId: "webb-760df",
@@ -19,52 +19,59 @@ var firebaseConfig = {
     measurementId: "G-2JZB4KMM4J"
 };
 
+//Incialização do firebase
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+const db = firebase.firestore();
 
+//Elementos
 const status = document.getElementById("status");
-
 const userchat = document.getElementById("userChat");
 const profile = document.getElementById("profile");
-var docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
+const lista = document.getElementById("conversas");
+
+// Responsavel por ler o BD do usuario Target
+const docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
 docRef.get().then((doc) => {
     if (doc.exists) {
         userchat.innerHTML = doc.data().user
         profile.src = doc.data().img
-        console.log(doc.user.img)
+        console.log(doc.data().online)
+        switch (doc.data().online){
+            case 1:
+                status.innerHTML = 'online'
+                break;
+            case 0:
+                status.innerHTML = 'offline'
+                break;
+        }
     } else {
         console.log("No such document!");
     }
 }).catch((error) => {
     console.log("Error getting document:", error);
 });
+
+// Verifica se o usuario Sender está logado e chama a função de monstar as msgs
 let userLogin = '';
-
-const usuarioLogado = document.getElementById("user");
-
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         this.userId = user.uid
     }
-   userLogin = user.uid;
+    userLogin = user.uid;
     showMsg()
 })
 
+// Ler as informações do usuario Sender
 db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         if (userLogin === doc.data().uid){
             usuarioLogado.innerHTML = 'Olá ' + doc.data().user;
         }
-        if(doc.data().online === 1){
-            status.innerHTML = 'online';
-        }else{
-            status.innerHTML = 'offline';
-        }
     });
 });
 
-
-var x = document.getElementById("myInput");
+//Responsavel por da input apertando botão Enter
+const x = document.getElementById("myInput");
 x.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
@@ -73,11 +80,17 @@ x.addEventListener("keyup", function(event) {
     }
 });
 
+//Função que liga botão enviar a função que escreve a msg no BD
 function enviar() {
-    writeUserData(x.value)
+    if (x.value.length === 0){
+        window.alert("Escreva uma mensagem !");
+    } else {
+        writeMensagem(x.value)
+    }
 }
 
-function writeUserData(msg) {
+//Função responsavel por escrever no BD
+function writeMensagem(msg) {
     x.value = '';
     +new Date
     var smg = db.collection("mensagens");
@@ -97,10 +110,10 @@ function writeUserData(msg) {
 }
 
 let dados = '';
-const lista = document.getElementById("conversas");
 
+//Função responsavel por mostrar as mensagens
 function showMsg() {
-    var mensagens = db.collection("mensagens");
+    const mensagens = db.collection("mensagens");
     mensagens.orderBy('time', 'desc').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if (doc.data().uid_sender === userLogin && doc.data().uid_target === sessionStorage.getItem('uid')){
@@ -115,6 +128,8 @@ function showMsg() {
     });
     setTimeout(showMsg, 10000);
 }
+
+//Função responsavel por fazer LogOut
 function logout(){
     db.collection("users").doc(userLogin).update({
         online: 0
