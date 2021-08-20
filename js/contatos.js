@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         this.userId = user.uid
     }
-    userLogin = user.uid;
+     userLogin = user.uid;
 })
 
 db.collection("users").get().then((querySnapshot) => {
@@ -50,12 +50,21 @@ function chat_global(){
 }
 
 function logout(){
-    firebase.auth().signOut().then(() => {
+    db.collection("users").doc(userLogin).update({
+        online: 0
+    }).then((docRef) => {
+        firebase.auth().signOut().then(() => {
+            window.location.href = 'index.html';
+        }).catch((error) => {
+            console.log(error.code)
+        });
         window.location.href = 'index.html';
-    }).catch((error) => {
-        console.log(error.code)
-    });
+    })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
 }
+
 
 
 function gotochat(uid) {

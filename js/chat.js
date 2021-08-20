@@ -109,9 +109,17 @@ function showMsg() {
     setTimeout(showMsg, 10000);
 }
 function logout(){
-    firebase.auth().signOut().then(() => {
+    db.collection("users").doc(userLogin).update({
+        online: 0
+    }).then((docRef) => {
+        firebase.auth().signOut().then(() => {
+            window.location.href = 'index.html';
+        }).catch((error) => {
+            console.log(error.code)
+        });
         window.location.href = 'index.html';
-    }).catch((error) => {
-        console.log(error.code)
-    });
+    })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
 }

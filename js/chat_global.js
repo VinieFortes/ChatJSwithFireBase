@@ -102,10 +102,3 @@ function showMsg() {
     });
     setTimeout(showMsg, 10000);
 }
-function logout(){
-    firebase.auth().signOut().then(() => {
-        window.location.href = 'index.html';
-    }).catch((error) => {
-        console.log(error.code)
-    });
-}

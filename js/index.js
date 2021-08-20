@@ -24,10 +24,16 @@ var db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        window.location.href = 'contatos.html';
+        db.collection("users").doc(user.uid).update({
+            online: 1
+        }).then((docRef) => {
+            window.location.href = 'contatos.html';
+        })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
     }
 })
-
 
 var imgs = ['src/cavalo.png','src/dog.png','src/dog2.png','src/gato.png','src/gato2.png','src/pinguim.png','src/passaro.png']
 
@@ -51,7 +57,8 @@ async function SingUp(){
                     user: usuario,
                     email: email,
                     uid: user.uid,
-                    img: imgs[Math.floor(Math.random() * 6) + 1]
+                    img: imgs[Math.floor(Math.random() * 6) + 1],
+                    online: 1
                 }).then((docRef) => {
                     window.location.href = 'contatos.html';
                 })
@@ -94,7 +101,14 @@ async function Entrar(){
     try{
         await firebase.auth().signInWithEmailAndPassword(email, senha).then((userCredential) => {
             new Promise(resolve => setTimeout(resolve, 3000));
-            window.location.href = 'contatos.html';
+            db.collection("users").doc(user.uid).update({
+                online: 1
+            }).then((docRef) => {
+                    window.location.href = 'contatos.html';
+            })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
         })
 
     }catch (erro) {
@@ -112,13 +126,7 @@ async function Entrar(){
         }
     }
 }
-const inputSin = document.getElementsByClassName("singup");
-inputSin.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("criar").click();
-    }
-});
+
 const inputlin1 = document.getElementById("loginEmail_input");
 const inputlin2 = document.getElementById("loginPass_input");
 inputlin1.addEventListener("keyup", function(event) {
