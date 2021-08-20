@@ -22,6 +22,13 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        window.location.href = 'contatos.html';
+    }
+})
+
+
 var imgs = ['src/cavalo.png','src/dog.png','src/dog2.png','src/gato.png','src/gato2.png','src/pinguim.png','src/passaro.png']
 
 const btnLoginEmail = document.getElementById("loginEmail_input");

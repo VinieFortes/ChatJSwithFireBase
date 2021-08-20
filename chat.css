@@ -1,9 +1,8 @@
 body{
     background-color: #25D366;
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: table;
+    margin: 10px auto 0;
 }
 #chat{
     text-align: center;
@@ -100,4 +99,12 @@ table{
 }
 #targetinfo p{
     margin-left: 5px;
+}
+footer{
+    text-align: center;
+    margin-top: 10px;
+    background-color: #075E54;
+    border-radius: 12px;
+    padding: 3px;
+    margin-bottom: 5px;
 }

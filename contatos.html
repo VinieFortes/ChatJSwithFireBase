@@ -8,7 +8,7 @@
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <div id="header">
-    <img src="src/arrow_icon.png" width="15" height="20" style="float: left; margin-top: 25px; margin-left: 10px" alt="back" onclick="window.history.go(-1); return false;">
+    <img src="src/arrow_icon.png" width="15" height="20" style="float: left; margin-top: 25px; margin-left: 10px" alt="back" onclick="logout()">
     <h1>Chat.JS</h1>
     <div id="user_info">
         <p id="user"></p>
@@ -21,7 +21,7 @@
     <p>Esses são os contatos disponiveis para chat individual no Chat.JS</p>
     <div id="lista"></div>
 </div>
-
+<footer>Feito por Vinicius Fortes 2021</footer>
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>

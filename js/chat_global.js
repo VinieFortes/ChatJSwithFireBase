@@ -57,7 +57,11 @@ x.addEventListener("keyup", function(event) {
 });
 
 function enviar() {
-    writeUserData(x.value)
+    if (x.value.length === 0){
+        window.alert("Escreva uma mensagem !");
+    } else {
+        writeUserData(x.value)
+    }
 }
 
 function writeUserData(msg) {
