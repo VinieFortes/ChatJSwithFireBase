@@ -61,6 +61,7 @@ function enviar() {
 }
 
 function writeUserData(msg) {
+    x.value = '';
     +new Date
     var smg = db.collection("mensagens");
     smg.doc().set({

@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
     <div id="header">
-        <h1>Chat JS</h1>
+        <h1>Chat.JS</h1>
         <p> Crie sua conta e converse com atraves de um chat feito em JavaScript utlizando FireBase Database !</p>
     </div>
-    <div id="singUp">
-        <p class="info">Ainda não tem conta ? Então Crie uma !</p>
-        <input class="singup" type="text" placeholder="Email" id="email_singUp" required>
-        <input class="singup" type="password" placeholder="Senha" id="senha_singUp" required>
-        <input class="singup" type="text" placeholder="Usuario" id="user" required>
-        <button id="criar" onclick="SingUp()">Criar conta</button>
-    </div>
-    <div id="Login">
-        <p class="info">Já tem uma conta ? Então Faça Login !</p>
-        <button id="login_input" onclick="Login()">Login</button>
-        <input id="loginEmail_input" type="email" placeholder="Email" style="visibility: hidden" required>
-        <input id="loginPass_input" type="password" placeholder="Senha" style="visibility: hidden" required>
-        <button id="loginEntrar_input" style="visibility: hidden" onclick="Entrar()">Entrar</button>
+    <div id="body2">
+        <div id="singUp">
+            <p class="info">Ainda não tem conta ? Então Crie uma !</p>
+            <input class="singup" type="text" placeholder="Email" id="email_singUp" required>
+            <input class="singup" type="password" placeholder="Senha" id="senha_singUp" required>
+            <input class="singup" type="text" placeholder="Usuario" id="user" required>
+            <button id="criar" onclick="SingUp()">Criar conta</button>
+        </div>
+        <div id="Login">
+            <p class="info">Já tem uma conta ? Então Faça Login !</p>
+            <button id="login_input" onclick="Login()">Login</button>
+            <input id="loginEmail_input" type="email" placeholder="Email" style="visibility: hidden" required>
+            <input id="loginPass_input" type="password" placeholder="Senha" style="visibility: hidden" required>
+            <button id="loginEntrar_input" style="visibility: hidden" onclick="Entrar()">Entrar</button>
+        </div>
     </div>
     <div id="erro"></div>
-
+    <footer>Feito por Vinicius Fortes 2021</footer>
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
