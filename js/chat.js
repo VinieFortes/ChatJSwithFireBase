@@ -28,6 +28,7 @@ const status = document.getElementById("status");
 const userchat = document.getElementById("userChat");
 const profile = document.getElementById("profile");
 const lista = document.getElementById("conversas");
+const usuarioLogado = document.getElementById("user");
 
 // Responsavel por ler o BD do usuario Target
 const docRef = db.collection("users").doc(sessionStorage.getItem('uid'));
